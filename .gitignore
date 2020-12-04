@@ -1,2 +1,5 @@
 .idea
 details.txt
+creds/
+node_modules
+*.iml

@@ -1,9 +1,20 @@
 {
-	"name": "build-notifier",
-	"version": "0.0.1",
-	"description": "Slack integration for Google Cloud Build, using Google Cloud Functions",
-	"main": "index.js",
-	"dependencies": {
-		"@slack/client": "4.10.0"
-	}
+  "name": "build-notifier",
+  "version": "0.0.1",
+  "description": "Slack integration for Google Cloud Build, using Google Cloud Functions",
+  "main": "index.js",
+  "dependencies": {
+    "@slack/client": "4.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GrantInduro/gcp-build-notifier.git"
+  },
+  "keywords": [],
+  "author": "Grant Jordan<grant@induro.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GrantInduro/gcp-build-notifier/issues"
+  },
+  "homepage": "https://github.com/GrantInduro/gcp-build-notifier#readme"
 }

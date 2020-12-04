@@ -1,13 +1,11 @@
 const IncomingWebhook = require('@slack/client').IncomingWebhook;
 const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK
 
-console.log(process.env.SLACK_WEBHOOK);
-
 const webhook = new IncomingWebhook(SLACK_WEBHOOK_URL);
 
 // subscribe is the main function called by Cloud Functions.
-module.exports.subscribe = (event, callback) => {
-	const build = eventToBuild(event.data.data);
+module.exports.subscribe = async (event) => {
+	const build = eventToBuild(event.data);
 
 	// Skip if the current status is not in the status list.
 	// Add additional statues to list if you'd like:
@@ -15,18 +13,17 @@ module.exports.subscribe = (event, callback) => {
 	// INTERNAL_ERROR, TIMEOUT, CANCELLED
 	const status = ['SUCCESS', 'FAILURE', 'INTERNAL_ERROR', 'TIMEOUT'];
 	if (status.indexOf(build.status) === -1) {
-		return callback();
+		return;
 	}
 
 	// Send message to Slack.
 	const message = createSlackMessage(build);
-	webhook.send(message, callback);
+	await webhook.send(message);
 };
 
 // eventToBuild transforms pubsub event message to a build object.
 const eventToBuild = (data) => {
-	console.log(data);
-	return JSON.parse(new Buffer(data, 'base64'));
+	return JSON.parse(new Buffer(data, 'base64').toString());
 }
 
 // createSlackMessage create a message from a build object.
