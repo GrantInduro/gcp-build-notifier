@@ -1,5 +1,7 @@
 const IncomingWebhook = require('@slack/client').IncomingWebhook;
-const SLACK_WEBHOOK_URL = "<INSERT YOUR WEBHOOK FROM STEP 1.2>"
+const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK
+
+console.log(process.env.SLACK_WEBHOOK);
 
 const webhook = new IncomingWebhook(SLACK_WEBHOOK_URL);
 
@@ -23,7 +25,8 @@ module.exports.subscribe = (event, callback) => {
 
 // eventToBuild transforms pubsub event message to a build object.
 const eventToBuild = (data) => {
-	return JSON.parse(new Buffer(data, 'base64').toString());
+	console.log(data);
+	return JSON.parse(new Buffer(data, 'base64'));
 }
 
 // createSlackMessage create a message from a build object.

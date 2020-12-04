@@ -9,4 +9,12 @@ To get started I used this tutorial, https://mehmandarov.com/slack-notifications
     * Pub/Sub
     * Build
 3. Create Slack Channel, Slack App, and Webhook
-4. 
+4. Create staging bucket 
+    ```shell script
+   gsutil mb -p [PROJECT_ID] gs://[STAGING_BUCKET_NAME]
+   ```
+5. Deploy cloud function.
+    ```shell script
+    gcloud functions deploy subscribe --stage-bucket [STAGING_BUCKET_NAME] \
+        --trigger-topic cloud-builds 
+    ```
