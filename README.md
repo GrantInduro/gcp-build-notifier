@@ -18,3 +18,7 @@ To get started I used this tutorial, https://mehmandarov.com/slack-notifications
     gcloud functions deploy subscribe --stage-bucket [STAGING_BUCKET_NAME] \
         --trigger-topic cloud-builds 
     ```
+
+
+## TODO
+* [Add authentication to function](https://cloud.google.com/pubsub/docs/push#authentication_and_authorization)
